@@ -1,3 +1,3 @@
-$env:GOPATH=%0
+$env:GOPATH="F:\home\eclipse\public_space\Go-lang"
 $env:Path="$env:Path;$env:GOPATH\bin;"
-echo $env:GOPATH
+$env:GOPATH
