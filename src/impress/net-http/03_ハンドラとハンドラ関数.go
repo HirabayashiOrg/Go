@@ -10,21 +10,20 @@ func (h *HelloHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
   fmt.Fprint(w, "Hello")
 }
 
-type ByeHandler struct{}
-func (h *ByeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-  fmt.Fprint(w, "Bye")
+func bye(w http.ResponseWriter, r *http.Request) {
+  fmt.Fprintf(w, "Bye")
 }
 
 func main() {
-  // ハンドラの生成
-  hello  := new(HelloHandler)
-  bye    := new(ByeHandler)
   server := http.Server{
     Addr: "localhost:6060",
     // Handler : DefaultServerMux
   }
+  // ハンドラの利用
+  hello  := new(HelloHandler)
   http.Handle("/hello", hello)
-  http.Handle("/bye"  , bye)
+  // ハンドラ関数利用
+  http.HandleFunc("/bye"  , bye)
 
   fmt.Println("server listening @ localhost:6060")
   server.ListenAndServe()
